@@ -362,8 +362,7 @@ static bool process_client_send( ConnectionData& cd )
     ssize_t ret = send( cd.sock,
                        cd.buffer+cd.bufferOffset,
                        cd.bufferSize-cd.bufferOffset,
-                       /*SO_NOSIGPIPE -- MAC OSX*/  // suppress SIGPIPE signals, generate EPIPE instead
-                       MSG_NOSIGNAL                 // linux
+                       SO_NOSIGPIPE  // suppress SIGPIPE signals, generate EPIPE instead
                        );
     
     if( -1 == ret )
